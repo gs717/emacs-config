@@ -3,6 +3,7 @@
 (add-to-list 'load-path "~/.emacs.d/plugin/wubi")
 (add-to-list 'load-path "~/.emacs.d/plugin/google-map")
 (add-to-list 'load-path "~/.emacs.d/plugin/zencoding-mode")
+(add-to-list 'load-path "~/.emacs.d/plugin/doxymacs")
 
 ;;------颜色主题----------
 (add-to-list 'load-path "~/.emacs.d/plugin/color-theme-6.6.0")
@@ -25,9 +26,6 @@
 ;;------添加注释-----------
 (global-set-key [C-f3] 'comment-or-uncomment-region)
 
-;;------谷歌地图-----------
-;;(require 'google-maps)
-
 ;;-------全屏快捷键---------
 (defun fullscreen ()
   (interactive)
@@ -35,18 +33,19 @@
 			 '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
 (global-set-key [f11] 'fullscreen)
 
-;;--------系统变量配置-----------
+;;------系统变量配置-----------
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(doxymacs-doxygen-style "JavaDoc")
  '(ecb-options-version "2.40")
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--mouse-2))
  '(initial-scratch-message nil)
  '(menu-bar-mode nil)
- '(tool-bar-mode nil)
- '(scroll-bar-mode nil))
+ '(scroll-bar-mode nil)
+ '(tool-bar-mode nil))
 (auto-image-file-mode)
 (display-time-mode 1)
 (global-linum-mode t)
@@ -135,10 +134,13 @@
 (add-hook 'c-mode-hook 'my-c-mode-auto-pair)  
 (add-hook 'c++-mode-hook 'my-c-mode-auto-pair) 
 
-
 ;;---------zencoding--------------
 (require 'zencoding-mode)
 (add-hook 'sgml-mode-hook 'zencoding-mode) ;;Auto-start
+
+;;---------doxymacs文档注释--------
+(require 'doxymacs)
+(add-hook 'c-mode-common-hook 'doxymacs-mode)
 
 ;;---------svn----------------
 ;;(require 'psvn)
@@ -175,3 +177,7 @@
 ;; (global-set-key [f8] 'emms-next)
 ;; (global-set-key [f9] 'emms-volume-lower)
 ;; (global-set-key [f10] 'emms-volume-raise)
+
+;;------谷歌地图-----------
+;;(require 'google-maps)
+
