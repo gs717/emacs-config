@@ -4,6 +4,7 @@
 (add-to-list 'load-path "~/.emacs.d/plugin/google-map")
 (add-to-list 'load-path "~/.emacs.d/plugin/zencoding-mode")
 (add-to-list 'load-path "~/.emacs.d/plugin/doxymacs")
+(add-to-list 'load-path "~/.emacs.d/plugin/php-mode")
 
 ;;------ÑÕÉ«Ö÷Ìâ----------
 (add-to-list 'load-path "~/.emacs.d/plugin/color-theme-6.6.0")
