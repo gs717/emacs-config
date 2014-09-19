@@ -4,7 +4,7 @@
 (add-to-list 'load-path "~/.emacs.d/plugin/google-map")
 (add-to-list 'load-path "~/.emacs.d/plugin/zencoding-mode")
 (add-to-list 'load-path "~/.emacs.d/plugin/doxymacs")
-(add-to-list 'load-path "~/.emacs.d/plugin/php-mode")
+;;(add-to-list 'load-path "~/.emacs.d/plugin/php-mode")
 
 ;;------颜色主题----------
 (add-to-list 'load-path "~/.emacs.d/plugin/color-theme-6.6.0")
@@ -108,6 +108,8 @@
 
 (require 'auto-complete)
 (locate-library "auto-complete.el") 
+(define-key ac-complete-mode-map "/C-n"        'ac-next)
+(define-key ac-complete-mode-map "/C-p"        'ac-previous)
 (add-hook 'php-mode-hook
       (lambda()
         (require 'php-completion)
@@ -117,6 +119,21 @@
           (make-variable-buffer-local 'ac-sources)
           (add-to-list 'ac-sources 'ac-source-php-completion)
           (auto-complete-mode t)))) 
+(add-hook 'c-mode-common-hook
+          (lambda()
+            (c-set-offset 'case-label '+)))
+;; (add-hook 'php-mode-hook
+;;       (lambda()
+;;         (defun ywb-php-lineup-arglist-intro (langelem)
+;;           (save-excursion
+;;             (goto-char (cdr langelem))
+;;             (vector (+ (current-column) c-basic-offset))))
+;;         (defun ywb-php-lineup-arglist-close (langelem)
+;;           (save-excursion
+;;             (goto-char (cdr langelem))
+;;             (vector (current-column))))
+;;         (c-set-offset 'arglist-intro 'ywb-php-lineup-arglist-intro)
+;;         (c-set-offset 'arglist-close 'ywb-php-arglist-close)))
 
 ;;---------自动补全括号-------------
 (defun my-c-mode-auto-pair ()  
@@ -142,6 +159,9 @@
 ;;---------doxymacs文档注释--------
 (require 'doxymacs)
 (add-hook 'c-mode-common-hook 'doxymacs-mode)
+
+;;---------html mode--------------
+(add-to-list 'auto-mode-alist '("\\.volt\\'\\|\\.html\\'" . html-mode))
 
 ;;---------svn----------------
 ;;(require 'psvn)
